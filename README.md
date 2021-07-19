@@ -2,9 +2,9 @@
 
 Just a basic todo app for command line
 
-- [] Add todos
-- [] Remove todos
-- [] Check todos
+- [ ] Add todos
+- [ ] Remove todos
+- [ ] Check todos
 
 
 # What Does it do
