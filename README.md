@@ -6,15 +6,15 @@ Just a basic todo app for command line
 - [] Remove todos
 - [] Check todos
 
-# How
 
-Possible things to do :
-
+# What Does it do
 - Store all the todos in a txt file and then edit txt file as a database
 
-- Use notion api and add the todos to notion and then this will basically be
-    a command line client for notion api which is good but again far from what
-    I am making so nope :(
+Commands for the cli app
+
+ls : list all the todos , add : add a todo , rm : remove a todo , check : check a todo
 
 # Checklist
-
+- [ ] Initialize project structure
+- [ ] Reading and appending to a file
+- [ ] Checking todos In a file
