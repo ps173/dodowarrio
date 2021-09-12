@@ -11,7 +11,7 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-type Todo struct {
+type Todos struct {
 	gorm.Model
 	Name   string
 	Status bool
@@ -22,9 +22,9 @@ func main() {
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags),
 		logger.Config{
-			SlowThreshold:             time.Second,
-			LogLevel:                  logger.Silent,
-			IgnoreRecordNotFoundError: true,
+			SlowThreshold:             time.Second,   // Slow SQL threshold
+			LogLevel:                  logger.Silent, // Log level
+			IgnoreRecordNotFoundError: true,          // Ignore ErrRecordNotFound error for logger
 			Colorful:                  true,
 		},
 	)
@@ -37,22 +37,27 @@ func main() {
 	}
 	setup(db)
 
+	// TODO : Better Cli and flags
 	flag := os.Args[1]
 	argument := os.Args[2:]
 	if flag == "new" && argument != nil {
 		argStr := strings.Join(argument, " ")
 		newTodo(argStr, db)
 	}
+
+	if flag == "ls" {
+		listTodo(db)
+	}
 }
 
 func setup(db *gorm.DB) {
-	db.AutoMigrate(&Todo{})
+	db.AutoMigrate(&Todos{})
 }
 
 func newTodo(s string, db *gorm.DB) {
-	db.Create(&Todo{Name: s, Status: false})
+	db.Create(&Todos{Name: s, Status: false})
 }
 
 func listTodo(db *gorm.DB) {
-
+	//TODO: Figure Out how to list these
 }
