@@ -2,19 +2,33 @@
 
 Just a basic todo app for command line
 
-- [ ] Add todos
-- [ ] Remove todos
-- [ ] Check todos
-
-
 # What Does it do
-- Store all the todos in a txt file and then edit txt file as a database
+- store the todos in sqlite3 instance
 
 Commands for the cli app
 
-ls : list all the todos , add : add a todo , rm : remove a todo , check : check a todo
+```bash
+# sample commmands
+
+$ todos ls # lists all todos
+----------------------
+ 1. Create log file - [id]
+----------------------
+ 2. Nextjs Vimgore frontend - [id]
+-----------------------
+
+$ todos del id # deletes the id
+todo of id deleted 
+
+$. todos add something # creates a new todo
+added a todo do todos ls to check it 
+
+```
 
 # Checklist
-- [ ] Initialize project structure
-- [ ] Reading and appending to a file
-- [ ] Checking todos In a file
+- [x] Initialize project structure
+- [ ] Making basic commands : new
+- [ ] Making basic commands : ls
+- [ ] Making basic commands : del
+- [ ] Initialize a sql instance
+- [ ] Save the todos to database
