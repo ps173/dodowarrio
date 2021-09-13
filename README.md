@@ -3,6 +3,7 @@
 Just a basic todo app for command line
 
 # What Does it do
+
 - store the todos in sqlite3 instance
 
 Commands for the cli app
@@ -18,17 +19,21 @@ $ todos ls # lists all todos
 -----------------------
 
 $ todos del id # deletes the id
-todo of id deleted 
+todo of id deleted
 
 $. todos add something # creates a new todo
-added a todo do todos ls to check it 
+added a todo do todos ls to check it
 
 ```
 
 # Checklist
+
 - [x] Initialize project structure
-- [ ] Making basic commands - new
-- [ ] Making basic commands - ls
-- [ ] Making basic commands - del
-- [ ] Initialize a sql instance
-- [ ] Save the todos to database
+- [x] Making basic commands - add
+- [x] Making basic commands - ls
+- [x] Making basic commands - del
+- [ ] Making basic commands - update the todo
+- [x] Initialize a sql instance
+- [x] Save the todos to database
+- [ ] Make this a bit more good looking
+- [ ] Need a config to edit the ui maybe

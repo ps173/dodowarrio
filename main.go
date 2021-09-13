@@ -40,14 +40,19 @@ func main() {
 
 	flag := os.Args[1]
 	argument := os.Args[2:]
-	if flag == "new" && argument != nil {
-		argStr := strings.Join(argument, " ")
+	argStr := strings.Join(argument, " ")
+
+	if flag == "add" && argument != nil {
 		todo := Todos{Name: argStr, Status: false}
 		newTodo(db, &todo)
 	}
 
 	if flag == "ls" {
 		listTodo(db)
+	}
+
+	if flag == "del" && argument != nil {
+		deleteTodo(argStr, db)
 	}
 }
 
@@ -61,9 +66,13 @@ func newTodo(db *gorm.DB, todo *Todos) {
 
 func listTodo(db *gorm.DB) {
 	// Remeber : always pass a struct to be filled.
-	var todos Todos
+	var todos []Todos
 	db.Find(&todos)
-	fmt.Println(todos)
-	// db.First(&todos)
-	// fmt.Printf("Todo:%s\nCreated-At:%s\n", todos.Name, todos.CreatedAt)
+	for _, y := range todos {
+		fmt.Printf("%d. Task : %s, Status : %t \n", y.ID, y.Name, y.Status)
+	}
+}
+
+func deleteTodo(key string, db *gorm.DB) {
+	db.Delete(&Todos{}, key)
 }
