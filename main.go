@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -37,12 +38,12 @@ func main() {
 	}
 	setup(db)
 
-	// TODO : Better Cli and flags
 	flag := os.Args[1]
 	argument := os.Args[2:]
 	if flag == "new" && argument != nil {
 		argStr := strings.Join(argument, " ")
-		newTodo(argStr, db)
+		todo := Todos{Name: argStr, Status: false}
+		newTodo(db, &todo)
 	}
 
 	if flag == "ls" {
@@ -54,10 +55,15 @@ func setup(db *gorm.DB) {
 	db.AutoMigrate(&Todos{})
 }
 
-func newTodo(s string, db *gorm.DB) {
-	db.Create(&Todos{Name: s, Status: false})
+func newTodo(db *gorm.DB, todo *Todos) {
+	db.Create(todo)
 }
 
 func listTodo(db *gorm.DB) {
-	//TODO: Figure Out how to list these
+	// Remeber : always pass a struct to be filled.
+	var todos Todos
+	db.Find(&todos)
+	fmt.Println(todos)
+	// db.First(&todos)
+	// fmt.Printf("Todo:%s\nCreated-At:%s\n", todos.Name, todos.CreatedAt)
 }
