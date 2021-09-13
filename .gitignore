@@ -1,2 +1,8 @@
+# ignore db files
 *.db
+
+# ignore todos 
 Todo.*
+
+# ignore executables
+*.exe
