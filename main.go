@@ -50,6 +50,10 @@ func main() {
 		listTodo(db)
 	}
 
+	if flag == "delall" {
+		deleteAll(db)
+	}
+
 	if flag == "del" && argument != nil {
 		deleteTodo(argStr, db)
 	}
@@ -61,6 +65,7 @@ func setup(db *gorm.DB) {
 
 func newTodo(db *gorm.DB, todo *Todos) {
 	db.Create(todo)
+	fmt.Printf("New Todo is created with Id %d\n", todo.ID)
 }
 
 func listTodo(db *gorm.DB) {
@@ -74,4 +79,14 @@ func listTodo(db *gorm.DB) {
 
 func deleteTodo(key string, db *gorm.DB) {
 	db.Unscoped().Delete(&Todos{}, key)
+	fmt.Printf("Deleted todos with ID %s Succesfully \n", key)
+}
+
+func deleteAll(db *gorm.DB) {
+	var todos []Todos
+	db.Find(&todos)
+	for _, y := range todos {
+		db.Unscoped().Delete(&Todos{}, y.ID)
+	}
+	fmt.Println("Deleted All todos Succesfully")
 }

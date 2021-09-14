@@ -31,8 +31,8 @@ added a todo do todos ls to check it
 - [x] Initialize project structure
 - [x] Making basic commands - add
 - [x] Making basic commands - ls
-- [ ] Making basic commands - del ( hard delete them from database )
-- [ ] Making basic commands - update the todo
+- [x] Making basic commands - del ( hard delete them from database )
+- [x] Making basic commands - delall
 - [x] Initialize a sql instance
 - [x] Save the todos to database
 - [ ] Make this a bit more good looking
