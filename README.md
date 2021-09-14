@@ -9,19 +9,18 @@ It is basic todo list for command line.
 ```bash
 # sample commmands
 
-$ todos ls # lists all todos
-----------------------
+$ todo ls # lists all todos
  1. Create log file - [id]
-----------------------
  2. Nextjs Vimgore frontend - [id]
------------------------
 
-$ todos del id # deletes the id
-todo of id deleted
+$ todo del 1 # deletes the id
+Deleted todo of id 1
 
-$. todos add something # creates a new todo
-added a todo do todos ls to check it
+$ todo add something # creates a new todo
+Added a todo of id 1
 
+$ todo delall # deletes all the todos
+Deleted all the todos
 ```
 
 # Checklist
