@@ -4,9 +4,7 @@ Just a basic todo app for command line
 
 # What Does it do
 
-- store the todos in sqlite3 instance
-
-Commands for the cli app
+It is basic todo list for command line.
 
 ```bash
 # sample commmands
@@ -35,5 +33,6 @@ added a todo do todos ls to check it
 - [x] Making basic commands - delall
 - [x] Initialize a sql instance
 - [x] Save the todos to database
+- [ ] Making basic commands - help
 - [ ] Make this a bit more good looking
 - [ ] Need a config to edit the ui maybe
