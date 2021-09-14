@@ -14,8 +14,7 @@ import (
 
 type Todos struct {
 	gorm.Model
-	Name   string
-	Status bool
+	Name string
 }
 
 func main() {
@@ -43,7 +42,7 @@ func main() {
 	argStr := strings.Join(argument, " ")
 
 	if flag == "add" && argument != nil {
-		todo := Todos{Name: argStr, Status: false}
+		todo := Todos{Name: argStr}
 		newTodo(db, &todo)
 	}
 
@@ -68,11 +67,11 @@ func listTodo(db *gorm.DB) {
 	// Remeber : always pass a struct to be filled.
 	var todos []Todos
 	db.Find(&todos)
-	for _, y := range todos {
-		fmt.Printf("%d. Task : %s, Status : %t \n", y.ID, y.Name, y.Status)
+	for i, y := range todos {
+		fmt.Printf("%d. %s - %d \n", i+1, y.Name, y.ID)
 	}
 }
 
 func deleteTodo(key string, db *gorm.DB) {
-	db.Delete(&Todos{}, key)
+	db.Unscoped().Delete(&Todos{}, key)
 }
