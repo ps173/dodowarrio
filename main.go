@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"flag"
 	"log"
-	"os"
-	"strings"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -16,62 +14,30 @@ type Todos struct {
 }
 
 func main() {
+	// Initializing the db
 	db, err := gorm.Open(sqlite.Open("main.db"), &gorm.Config{})
 	if err != nil {
 		log.Panic("You got a err")
 	}
 	setup(db)
 
-	flag := os.Args[1]
-	argument := os.Args[2:]
-	argStr := strings.Join(argument, " ")
+	// Flags management
+	useListTodo := flag.Bool("ls", false, "List all todos")
+	useDeleteAllTodo := flag.Bool("da", false, "Deletes all todos")
+	useDeleteSingle := flag.Bool("del", false, "Deletes single todos with provided id of todo")
+	useAddTodo := flag.Bool("add", false, "Adds a todo with defined string")
+	flag.Parse()
 
-	if flag == "add" && argument != nil {
-		todo := Todos{Name: argStr}
-		newTodo(db, &todo)
-	}
-
-	if flag == "ls" {
+	if *useListTodo && flag.Arg(0) == "" {
 		listTodo(db)
-	}
-
-	if flag == "delall" {
+	} else if *useDeleteAllTodo && flag.Arg(0) == "" {
 		deleteAll(db)
+	} else if *useAddTodo && flag.Arg(0) != "" {
+		newTodo(db, &Todos{Name: flag.Arg(0)})
+	} else if *useDeleteSingle && flag.Arg(0) != "" {
+		deleteTodo(flag.Arg(0), db)
+	} else {
+		log.Panicln("Wrong value see --help for usage")
 	}
 
-	if flag == "del" && argument != nil {
-		deleteTodo(argStr, db)
-	}
-}
-
-func setup(db *gorm.DB) {
-	db.AutoMigrate(&Todos{})
-}
-
-func newTodo(db *gorm.DB, todo *Todos) {
-	db.Create(todo)
-	fmt.Printf("New Todo is created with Id %d\n", todo.ID)
-}
-
-func listTodo(db *gorm.DB) {
-	// Remeber : always pass a struct to be filled.
-	var todos []Todos
-	db.Find(&todos)
-	for i, y := range todos {
-		fmt.Printf("%d. %s - %d \n", i+1, y.Name, y.ID)
-	}
-}
-
-func deleteTodo(key string, db *gorm.DB) {
-	db.Unscoped().Delete(&Todos{}, key)
-	fmt.Printf("Deleted todos with ID %s Succesfully \n", key)
-}
-
-func deleteAll(db *gorm.DB) {
-	var todos []Todos
-	db.Find(&todos)
-	for _, y := range todos {
-		db.Unscoped().Delete(&Todos{}, y.ID)
-	}
-	fmt.Println("Deleted All todos Succesfully")
 }

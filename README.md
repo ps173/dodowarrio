@@ -9,29 +9,16 @@ It is basic todo list for command line.
 ```bash
 # sample commmands
 
-$ todo ls # lists all todos
+$ todo --ls # lists all todos
  1. Create log file - [id]
  2. Nextjs Vimgore frontend - [id]
 
-$ todo del 1 # deletes the id
+$ todo --del 1 # deletes the id
 Deleted todo of id 1
 
-$ todo add something # creates a new todo
+$ todo --add something # creates a new todo
 Added a todo of id 1
 
-$ todo delall # deletes all the todos
+$ todo --da # deletes all the todos
 Deleted all the todos
 ```
-
-# Checklist
-
-- [x] Initialize project structure
-- [x] Making basic commands - add
-- [x] Making basic commands - ls
-- [x] Making basic commands - del ( hard delete them from database )
-- [x] Making basic commands - delall
-- [x] Initialize a sql instance
-- [x] Save the todos to database
-- [ ] Making basic commands - help
-- [ ] Make this a bit more good looking
-- [ ] Need a config to edit the ui maybe
