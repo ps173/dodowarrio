@@ -25,7 +25,7 @@ Deleted all the todos
 
 # building
 
-You need golang installed on your system. Check [there official site](https://golang.org/dl/).
+You need golang installed on your system. Check [their official site](https://golang.org/dl/).
 After installing golang. Clone the repo to local system.
 ```
 $ git clone https://github.com/ps173/go-todo-app.git
