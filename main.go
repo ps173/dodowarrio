@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 
+	"github.com/fatih/color"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -37,7 +38,7 @@ func main() {
 	} else if *useDeleteSingle && flag.Arg(0) != "" {
 		deleteTodo(flag.Arg(0), db)
 	} else {
-		log.Panicln("Wrong value see --help for usage")
+		color.Red("Wrong value see --help for usage")
 	}
 
 }
