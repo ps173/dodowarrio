@@ -22,3 +22,16 @@ Added a todo of id 1
 $ todo --da # deletes all the todos
 Deleted all the todos
 ```
+
+# building
+
+You need golang installed on your system. Check [there official site](https://golang.org/dl/).
+After installing golang. Clone the repo to local system.
+```
+$ git clone https://github.com/ps173/go-todo-app.git
+```
+After Cloning.Do `cd go-todo-app` and then run 
+```
+$ go build .
+```
+
