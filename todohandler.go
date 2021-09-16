@@ -1,12 +1,16 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/fatih/color"
 	"gorm.io/gorm"
 )
 
-// TODO: Don't Print Directly
+// TODO: A Better looking print I guess
+// HACK: Don't Print Directly
 var c = color.New(color.FgMagenta)
+var completed = color.New(color.BgGreen).Add(color.FgBlack)
 
 func setup(db *gorm.DB) {
 	db.AutoMigrate(&Todos{})
@@ -22,7 +26,12 @@ func listTodo(db *gorm.DB) {
 	var todos []Todos
 	db.Find(&todos)
 	for i, y := range todos {
-		color.Green("%d. %s - %d \n", i+1, y.Name, y.ID)
+		if y.Status {
+			completed.Printf("%d. %s - %d [%t]", i+1, y.Name, y.ID, y.Status)
+			fmt.Println()
+		} else {
+			color.Yellow("%d. %s - %d [%t]\n", i+1, y.Name, y.ID, y.Status)
+		}
 	}
 }
 
@@ -38,4 +47,11 @@ func deleteAll(db *gorm.DB) {
 		db.Unscoped().Delete(&Todos{}, y.ID)
 	}
 	c.Println("Deleted All todos Succesfully")
+}
+
+func updateTodo(status bool, key string, db *gorm.DB) {
+	var todo Todos
+	db.First(&todo, key)
+	todo.Status = status
+	db.Save(&todo)
 }
