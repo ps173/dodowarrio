@@ -21,6 +21,9 @@ Added a todo of id 1
 
 $ todo --da # deletes all the todos
 Deleted all the todos
+
+$ todo --ud 1 false # sets the first todo as done
+Updated todo with id 1 as false
 ```
 
 # building

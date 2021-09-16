@@ -54,4 +54,5 @@ func updateTodo(status bool, key string, db *gorm.DB) {
 	db.First(&todo, key)
 	todo.Status = status
 	db.Save(&todo)
+	color.Green("Updated todo with id %s with status %t succesfully", key, todo.Status)
 }
