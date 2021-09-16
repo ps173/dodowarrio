@@ -2,6 +2,9 @@
 
 Just a basic todo app for command line
 
+# CLI Demo
+[![asciicast](https://asciinema.org/a/KNjqSJItb4ES08xgFbVfKw6MP.svg)](https://asciinema.org/a/KNjqSJItb4ES08xgFbVfKw6MP)
+
 # What Does it do
 
 It is basic todo list for command line.
