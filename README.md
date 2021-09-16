@@ -16,16 +16,16 @@ $ todo --ls # lists all todos
  1. Create log file - [id]
  2. Nextjs Vimgore frontend - [id]
 
-$ todo --del 1 # deletes the id
+$ todo -del 1 # deletes the id
 Deleted todo of id 1
 
-$ todo --add something # creates a new todo
+$ todo -add something # creates a new todo
 Added a todo of id 1
 
-$ todo --da # deletes all the todos
+$ todo -da # deletes all the todos
 Deleted all the todos
 
-$ todo --ud 1 false # sets the first todo as done
+$ todo -ud 1 false # sets the first todo as done
 Updated todo with id 1 as false
 ```
 
