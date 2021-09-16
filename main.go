@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"log"
+	"os"
+	"path/filepath"
 	"strconv"
 
 	"github.com/fatih/color"
@@ -17,8 +19,11 @@ type Todos struct {
 }
 
 func main() {
-	// Initializing the db
-	db, err := gorm.Open(sqlite.Open("main.db"), &gorm.Config{})
+	// Initializing the db in home dir
+	dirname, _ := os.UserHomeDir()
+	p := filepath.Join(dirname, "main.db")
+
+	db, err := gorm.Open(sqlite.Open(p), &gorm.Config{})
 	if err != nil {
 		log.Panic("You got a err")
 	}

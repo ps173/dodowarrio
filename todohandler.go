@@ -7,7 +7,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// TODO: A Better looking print I guess
 // HACK: Don't Print Directly
 var c = color.New(color.FgMagenta)
 var completed = color.New(color.BgGreen).Add(color.FgBlack)
